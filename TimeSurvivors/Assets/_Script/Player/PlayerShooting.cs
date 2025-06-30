@@ -3,8 +3,7 @@ using UnityEngine;
 public class PlayerShooting : MonoBehaviour
 {
     [Header("Shooting")]
-    public GameObject projectilePrefab;
-    public float fireRate = 1.9f; 
+    public GameObject projectilePrefab; 
     public float projectileSpeed = 10f;
     public float range = 10f;
 
@@ -21,7 +20,7 @@ public class PlayerShooting : MonoBehaviour
             if (target != null)
             {
                 ShootAt(target);
-                fireCooldown = fireRate;
+                fireCooldown = PlayerStats.instance.fireRate;
             }
         }
     }

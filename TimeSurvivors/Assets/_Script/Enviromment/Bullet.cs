@@ -6,9 +6,9 @@ public class Bullet : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Enemy") || collision.CompareTag("Player") && collision.tag != gameObject.tag)
+        if(collision.CompareTag("Enemy") && collision.tag != gameObject.tag)
         {
-            collision.gameObject.GetComponent<IDamageable>().TakeDamage();
+            collision.gameObject.GetComponent<IDamageable>().TakeDamage((int)PlayerStats.instance.damage);
             Destroy(gameObject);
         }
 

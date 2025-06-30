@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    public float moveSpeed = 5f;
     private Vector2 moveInput;
     private Rigidbody2D rb;
 
@@ -49,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            rb.velocity = moveInput * moveSpeed;
+            rb.velocity = moveInput * PlayerStats.instance.moveSpeed;
         }
     }
 

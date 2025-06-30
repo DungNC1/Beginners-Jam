@@ -29,6 +29,7 @@ public class XpManager : MonoBehaviour
     {
         level++;
         xpToNextLevel += Mathf.RoundToInt(xpToNextLevel * 0.25f);
-        //FindObjectOfType<PerkUI>().ShowPerkChoices();
+        Time.timeScale = 0f;
+        FindObjectOfType<PerkUI>().ShowPerkChoices();
     }
 }

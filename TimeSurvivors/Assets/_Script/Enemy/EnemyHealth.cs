@@ -9,15 +9,15 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     public int expAmount;
     public GameObject exp;
 
-    public void TakeDamage()
+    public void TakeDamage(int damage)
     {
-        currentHealth--;
+        currentHealth -= damage;
 
         if(currentHealth <= 0)
         {
             for (int i = 0; i < expAmount; i++)
             {
-                Instantiate(exp);
+                Instantiate(exp, transform.position, Quaternion.identity);
             }
             Destroy(gameObject);
         }

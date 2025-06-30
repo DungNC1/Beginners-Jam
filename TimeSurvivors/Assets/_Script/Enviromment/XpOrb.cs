@@ -14,7 +14,7 @@ public class XpOrb : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //XPManager.Instance.AddXP(xpAmount);
+            XpManager.Instance.AddXP(xpAmount);
             Destroy(gameObject);
         }
     }
