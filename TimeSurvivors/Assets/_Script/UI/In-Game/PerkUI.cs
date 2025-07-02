@@ -37,32 +37,29 @@ public class PerkUI : MonoBehaviour
 
     float GetRandomValue(string perk)
     {
-        float value = 1f;
-
         switch (perk)
         {
             case "MoveSpeed":
-                value = Random.Range(0.25f, 1.5f);
-                break;
-            case "FireRate":
-                value = Random.Range(0.15f, 0.4f);
-                break;
-            case "Damage":
-                value = Random.Range(1f, 20f);
-                break;
-            case "CritChance":
-                value = Random.Range(5f, 10f);
-                break;
-            case "Heal":
-                value = Random.Range(10f, 50f);
-                break;
-            case "MaxHealth":
-                value = Random.Range(10f, 50f);
-                break;
-        }
+                return RoundToQuarter(Random.Range(0.25f, 1.5f));
 
-        return RoundToQuarter(value);
+            case "FireRate":
+                return SnapToSet(Random.Range(0.15f, 0.45f), new float[] { 0.15f, 0.30f, 0.45f });
+
+            case "Damage":
+                return Mathf.Round(Random.Range(1f, 20f));
+
+            case "CritChance":
+                return Mathf.Round(Random.Range(5f, 10f));
+
+            case "Heal":
+            case "MaxHealth":
+                return SnapToSet(Random.Range(10f, 50f), new float[] { 5f, 10f, 20f, 30f, 40f, 50f });
+
+            default:
+                return 1f;
+        }
     }
+
 
 
     void ApplyPerk(string perk, float value)
@@ -85,5 +82,24 @@ public class PerkUI : MonoBehaviour
     {
         return Mathf.Round(value * 4f) / 4f;
     }
+
+    float SnapToSet(float value, float[] allowed)
+    {
+        float closest = allowed[0];
+        float smallestDiff = Mathf.Abs(value - closest);
+
+        foreach (float option in allowed)
+        {
+            float diff = Mathf.Abs(value - option);
+            if (diff < smallestDiff)
+            {
+                smallestDiff = diff;
+                closest = option;
+            }
+        }
+
+        return closest;
+    }
+
 
 }
