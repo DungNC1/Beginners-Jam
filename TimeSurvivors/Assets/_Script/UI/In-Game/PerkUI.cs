@@ -70,7 +70,7 @@ public class PerkUI : MonoBehaviour
         {
             case "MoveSpeed": stats.moveSpeed += value; break;
             case "FireRate": stats.fireRate -= value; break;
-            case "Damage": stats.damage += value; break;
+            case "Damage": stats.damage += (int)value; break;
             case "CritChance": stats.critChance += value; break;
             case "Regen": stats.health += value; break;
             case "MaxHealth": stats.maxHealth += value; break;

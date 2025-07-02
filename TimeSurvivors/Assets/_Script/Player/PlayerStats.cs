@@ -13,7 +13,7 @@ public class PlayerStats : MonoBehaviour
 
     public float moveSpeed = 3;
     public float fireRate = 1.9f;
-    public float damage = 15;
+    public int damage = 15;
     public float critChance = 5f;
     public float maxHealth = 100f;
     public float health = 100f;

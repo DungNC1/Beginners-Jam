@@ -9,6 +9,11 @@ public class EnemyHealth : MonoBehaviour, IDamageable
     public int expAmount;
     public GameObject exp;
 
+    private void Start()
+    {
+        currentHealth = health;
+    }
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
