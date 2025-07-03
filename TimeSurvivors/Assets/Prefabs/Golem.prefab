@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3283590151439358037}
   - component: {fileID: 2945142146826025221}
   - component: {fileID: 5529416503904229052}
+  - component: {fileID: 6184673015515715367}
   m_Layer: 0
   m_Name: Golem
   m_TagString: Enemy
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 3482508768087895761}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7, y: 1.759087, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,9 +77,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0.2175703, b: 1, a: 1}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: -665996349, guid: e4095ca513b2a00449efa143fe914484, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -111,6 +112,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   slamIndicatorPrefab: {fileID: 5367886784505545102, guid: e65fa508239871242983800b5c99ef42, type: 3}
+  animator: {fileID: 0}
+  walkAnim: Golem_Walk
+  attackAnim: Golem_Slam
 --- !u!61 &3283590151439358037
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -143,18 +147,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.044923306, y: -0.17070872}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.9375, y: 2.375}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.5570498, y: 1.7726821}
   m_EdgeRadius: 0
 --- !u!50 &2945142146826025221
 Rigidbody2D:
@@ -198,3 +202,24 @@ MonoBehaviour:
   health: 110
   expAmount: 20
   exp: {fileID: 6355092726493546817, guid: 0586f612df307d947bb3b8c05c3ffd8b, type: 3}
+--- !u!95 &6184673015515715367
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3482508768087895761}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b713b8473fa1f7b459f2a6166f5d9dea, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

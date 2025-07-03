@@ -28,11 +28,16 @@ public class Raptor : MonoBehaviour
         rb.velocity = finalMove;
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerHealth>()?.TakeDamage(3);
+            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(10);
+            }
         }
     }
 }
