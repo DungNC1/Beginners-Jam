@@ -26,7 +26,13 @@ public class Raptor : MonoBehaviour
 
         Vector2 finalMove = (toPlayer + zigzagDir).normalized * speed;
         rb.velocity = finalMove;
+
+        if (finalMove.x != 0)
+        {
+            transform.localScale = new Vector3(Mathf.Sign(finalMove.x), 1, 1);
+        }
     }
+
 
 
     private void OnTriggerEnter2D(Collider2D collision)

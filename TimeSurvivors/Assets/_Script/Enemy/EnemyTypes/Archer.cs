@@ -44,7 +44,6 @@ public class Archer : MonoBehaviour
         }
         else
         {
-            // Stop moving and fire if ready
             if (cooldownTimer <= 0f)
             {
                 if (animator) animator.Play(shootAnim);
