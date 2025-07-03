@@ -18,6 +18,11 @@ public class PlayerMovement : MonoBehaviour
     public bool isInvincible = false;
     private Collider2D playerCollider;
 
+    [Header("Animation")]
+    public Animator animator;
+    public string idleAnim = "Idle";
+    public string walkAnim = "Walk";
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -29,6 +34,22 @@ public class PlayerMovement : MonoBehaviour
         if (!isDashing)
         {
             moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+
+            // Handle animation
+            if (moveInput != Vector2.zero)
+            {
+                animator.Play(walkAnim);
+
+                // Flip player based on horizontal direction
+                if (moveInput.x != 0)
+                {
+                    transform.localScale = new Vector3(Mathf.Sign(moveInput.x), 1, 1);
+                }
+            }
+            else
+            {
+                animator.Play(idleAnim);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && dashCooldownTimer <= 0f && moveInput != Vector2.zero)
@@ -37,7 +58,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (dashCooldownTimer > 0f)
+        {
             dashCooldownTimer -= Time.deltaTime;
+        }
     }
 
     void FixedUpdate()
@@ -67,7 +90,6 @@ public class PlayerMovement : MonoBehaviour
     {
         isDashing = false;
         isInvincible = false;
-
         playerCollider.enabled = true;
     }
 }

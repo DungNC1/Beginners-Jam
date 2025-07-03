@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Golem : MonoBehaviour
 {
+    [Header("Movement and Attack")]
     public float speed = 1f;
     public float slamRange = 1.5f;
     public float slamRadius = 2f;
@@ -9,11 +10,14 @@ public class Golem : MonoBehaviour
     public float slamCooldown = 2f;
     public int slamDamage = 30;
 
+    [Header("References")]
     public Transform player;
     public LayerMask playerLayer;
-    public GameObject slamIndicatorPrefab; 
+    public GameObject slamIndicatorPrefab;
+    public Animator animator;
+    public string walkAnim = "Walk";
+    public string attackAnim = "Slam";
 
-    private float slamTimer = 0f;
     private bool isSlamming = false;
     private GameObject currentIndicator;
 
@@ -30,8 +34,18 @@ public class Golem : MonoBehaviour
 
         if (!isSlamming)
         {
+            // Move towards player
             Vector2 dir = (player.position - transform.position).normalized;
             transform.position += (Vector3)dir * speed * Time.deltaTime;
+
+            // Play walking animation
+            if (animator) animator.Play(walkAnim);
+
+            // Face the player
+            if (dir.x != 0)
+            {
+                transform.localScale = new Vector3(Mathf.Sign(dir.x), 1, 1);
+            }
         }
     }
 
@@ -39,9 +53,10 @@ public class Golem : MonoBehaviour
     {
         isSlamming = true;
 
+        // Play attack animation
+        if (animator) animator.Play(attackAnim);
+
         // Show AoE Indicator
-        currentIndicator = Instantiate(slamIndicatorPrefab, transform.position, Quaternion.identity);
-        //currentIndicator.transform.localScale = Vector3.one * slamRadius * 2f;
 
         yield return new WaitForSeconds(slamChargeTime);
 
@@ -59,6 +74,11 @@ public class Golem : MonoBehaviour
 
         yield return new WaitForSeconds(slamCooldown);
         isSlamming = false;
+    }
+
+    public void spawnEffect()
+    {
+        currentIndicator = Instantiate(slamIndicatorPrefab, transform.position, Quaternion.identity);
     }
 
     void OnDrawGizmosSelected()
